@@ -8,12 +8,10 @@ import Footer from "./Footer";
 
 const navItems = [
   { to: "/", label: "Home" },
-  { to: "/products", label: "Products" },
-  { to: "/quote", label: "Quote" },
-  { to: "/gallery", label: "Gallery" },
-  { to: "/downloads", label: "Downloads" },
   { to: "/about", label: "About" },
-  { to: "/investors", label: "Investors" },
+  { to: "/products", label: "Products" },
+  { to: "/gallery", label: "Gallery" },
+  { to: "/quote", label: "Quote" },
   { to: "/contact", label: "Contact" },
 ];
 
