@@ -11,9 +11,9 @@ export default function Products() {
         subtitle="Choose a style, then we measure, advise, supply, and install."
       />
 
-      <div className="mt-8 rounded-2xl overflow-hidden border border-black/5 bg-white shadow-soft">
+      {/* <div className="mt-8 rounded-2xl overflow-hidden border border-black/5 bg-white shadow-soft">
         <img src={productsImg} alt="Products collage" className="w-full object-cover" />
-      </div>
+      </div> */}
 
       <div className="mt-10 grid gap-6 md:grid-cols-2">
         <Card>

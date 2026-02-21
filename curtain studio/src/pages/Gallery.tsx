@@ -1,9 +1,9 @@
 import { useMemo, useState } from "react";
 import { Card, CardBody, SectionTitle } from "../components/ui";
-import heroImg from "../assets/hero_living_room.png";
-import productsImg from "../assets/products_collage.png";
-import founderImg from "../assets/founder_temogo.png";
-import timelineImg from "../assets/timeline.png";
+import heroImg from "../assets/beforeX.jpg";
+import productsImg from "../assets/After.jpg";
+import founderImg from "../assets/warm-luxury.jpg";
+import timelineImg from "../assets/minimulist.jpg";
 import Lightbox from "../components/Lightbox";
 import BeforeAfterSlider from "../components/quote/BeforeAfterSlider";
 
@@ -18,8 +18,8 @@ export default function Gallery() {
     () => [
       { src: heroImg, alt: "Styled living room curtains", tag: "Rooms" },
       { src: productsImg, alt: "Curtain and décor product collage", tag: "Products" },
-      { src: founderImg, alt: "Founder portrait", tag: "Team" },
-      { src: timelineImg, alt: "Business milestones timeline", tag: "Growth" },
+      { src: founderImg, alt: "Warm Luxury", tag: "Team" },
+      { src: timelineImg, alt: "Modern Minimalistic", tag: "Growth" },
     ],
     []
   );

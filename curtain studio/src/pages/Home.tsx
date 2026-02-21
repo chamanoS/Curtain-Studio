@@ -2,12 +2,27 @@ import { motion } from "framer-motion";
 import heroImg from "../assets/hero_living_room.png";
 import productsImg from "../assets/products_collage.png";
 import timelineImg from "../assets/timeline.png";
+import processImg from "../assets/process_img.jpg";
 import { brand, sections, milestones } from "../data/content";
 import { Card, CardBody, SectionTitle } from "../components/ui";
-import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
-import Gallery from "../pages/Gallery"
+import Gallery from "../pages/Gallery";
 import QuoteEstimator from "../components/quote/QuoteEstimator";
+import {
+  Ruler,
+  Drill,
+  Sparkles,
+  ShieldCheck,
+  Scissors,
+  Clock3,
+  Home as HomeIcon,
+} from "lucide-react";
+
+const homeGallery = [
+  { src: processImg, alt: "Interior inspiration" },
+  { src: heroImg, alt: "Living room curtains" },
+];
 
 export default function Home() {
   return (
@@ -22,11 +37,14 @@ export default function Home() {
             </div>
             <h1 className="mt-4 text-4xl md:text-5xl font-semibold leading-tight">
               {brand.name}
-              <span className="block text-black/60 text-2xl md:text-3xl mt-2">{brand.tagline}</span>
+              <span className="block text-black/60 text-2xl md:text-3xl mt-2">
+                {brand.tagline}
+              </span>
             </h1>
             <p className="mt-4 text-black/70">
-              A growing décor brand specialising in custom curtains, rods, rails, accessories, and installation —
-              built on a deposit-based, low-risk model.
+              A growing décor brand specialising in custom curtains, rods,
+              rails, accessories, and installation — structured around a clear deposit 
+              and booking process for smooth project delivery.
             </p>
 
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -44,10 +62,22 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="mt-8 grid grid-cols-3 gap-3 text-center">
-              <Stat label="Avg profit/job" value="R900–R1,100" />
-              <Stat label="Monthly potential" value="R4k–R12k" />
-              <Stat label="Model" value="Deposit-based" />
+            <div className="mt-8 grid grid-cols-3 gap-3">
+              <BrandStat
+                icon={<HomeIcon className="h-4 w-4 text-brass" />}
+                value="At-home consult"
+                label="We come measure & advise"
+              />
+              <BrandStat
+                icon={<Clock3 className="h-4 w-4 text-brass" />}
+                value="Fast turnaround"
+                label="Quick quote + scheduling"
+              />
+              <BrandStat
+                icon={<ShieldCheck className="h-4 w-4 text-brass" />}
+                value="Pro finish"
+                label="Neat install & styling"
+              />
             </div>
           </div>
 
@@ -57,7 +87,12 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="rounded-3xl overflow-hidden shadow-soft border border-black/5 bg-white"
           >
-            <img src={heroImg} alt="Styled living room with curtains" className="w-full h-full object-cover" />
+            <img
+              src={heroImg}
+              alt="Styled living room with curtains"
+             className="w-full h-[350px] md:h-[450px] object-cover"
+
+            />
           </motion.div>
         </div>
       </section>
@@ -100,45 +135,86 @@ export default function Home() {
               </CardBody>
             </Card>
           </div>
-
-          
         </div>
       </section>
 
       {/*Gallery */}
-     <Gallery/>
+      <Gallery />
 
-      {/* Milestones */}
-      <section className="border-t border-black/5 bg-white/40">
+      {/* ✅ REPLACED MILESTONES: conversion-focused “How it works” + “Promise” */}
+      <section className="border-t border-black/5">
         <div className="container py-12">
           <SectionTitle
-            eyebrow="Future plans"
-            title="From curtains to a full décor brand"
-            subtitle="Over the next three years, we expand our product range, team, and physical footprint."
+            eyebrow="How it works"
+            title="A simple, clean process — from measurement to install"
+            subtitle="Designed for convenience and a premium finish."
           />
 
-          <div className="mt-8 grid gap-6 md:grid-cols-2 items-start">
-            <div className="rounded-2xl overflow-hidden border border-black/5 bg-white shadow-soft">
-              <img src={timelineImg} alt="Milestones timeline" className="w-full object-cover" />
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            <ProcessCard
+              icon={<Ruler className="h-5 w-5 text-brass" />}
+              title="1) Consult & measure"
+              text="We visit, measure accurately, and help you pick fabric + style."
+            />
+            <ProcessCard
+              icon={<Scissors className="h-5 w-5 text-brass" />}
+              title="2) Custom make"
+              text="Your curtains are made-to-fit with neat stitching and clean lines."
+            />
+            <ProcessCard
+              icon={<Drill className="h-5 w-5 text-brass" />}
+              title="3) Install & style"
+              text="We install rods/rails and finish the look so it’s ready to enjoy."
+            />
+          </div>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-2 items-start">
+            <div className="rounded-3xl overflow-hidden border border-black/10 shadow-soft bg-white">
+              <img
+                src={processImg}
+                alt="Interior styling inspiration"
+                className="w-full h-72 md:h-80 object-cover"
+              />
             </div>
 
             <Card>
               <CardBody>
-                <div className="font-semibold">Milestones</div>
-                <ol className="mt-3 space-y-3 text-black/70">
-                  {milestones.map((m) => (
-                    <li key={m.year} className="flex gap-3">
-                      <span className="mt-0.5 inline-flex h-7 w-14 items-center justify-center rounded-xl bg-sand text-ink text-sm font-semibold">
-                        {m.year}
-                      </span>
-                      <span>{m.text}</span>
-                    </li>
-                  ))}
-                </ol>
+                <div className="flex items-center gap-2 font-semibold">
+                  <ShieldCheck className="h-5 w-5 text-brass" />
+                  The Curtain Studio Promise
+                </div>
 
-                <div className="mt-6">
-                  <Link to="/investors" className="inline-flex items-center gap-2 text-brass hover:underline">
-                    See investment plan <ArrowRight className="h-4 w-4" />
+                <ul className="mt-3 space-y-2 text-black/70">
+                  <li className="flex gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-brass shrink-0" />
+                    <span>Accurate measurements and clear recommendations</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-brass shrink-0" />
+                    <span>
+                      Quality materials + a neat, professional install
+                    </span>
+                  </li>
+                  <li className="flex gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-brass shrink-0" />
+                    <span>
+                      Simple booking, simple communication, clean results
+                    </span>
+                  </li>
+                </ul>
+
+                <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                  <Link
+                    to="/quote"
+                    className="rounded-xl bg-ink px-5 py-3 text-paper shadow-soft hover:opacity-95 inline-flex items-center justify-center gap-2"
+                  >
+                    Estimate my project <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    to="/contact"
+                    className="rounded-xl bg-sand px-5 py-3 text-ink shadow-soft hover:opacity-95 inline-flex items-center justify-center"
+                  >
+                    Book a consultation
                   </Link>
                 </div>
               </CardBody>
@@ -146,8 +222,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-    
     </div>
   );
 }
@@ -157,6 +231,47 @@ function Stat({ label, value }: { label: string; value: string }) {
     <div className="rounded-2xl bg-white/60 border border-black/5 shadow-soft px-3 py-3">
       <div className="text-sm font-semibold">{value}</div>
       <div className="text-xs text-black/60 mt-1">{label}</div>
+    </div>
+  );
+}
+
+function BrandStat({
+  icon,
+  value,
+  label,
+}: {
+  icon: React.ReactNode;
+  value: string;
+  label: string;
+}) {
+  return (
+    <div className="rounded-2xl bg-paper/70 backdrop-blur border border-black/10 shadow-soft px-3 py-3">
+      <div className="flex items-center gap-2">
+        <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-sand border border-black/10">
+          {icon}
+        </span>
+        <div className="text-sm font-semibold text-ink">{value}</div>
+      </div>
+      <div className="text-xs text-black/60 mt-2">{label}</div>
+    </div>
+  );
+}
+function ProcessCard({
+  icon,
+  title,
+  text,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  text: string;
+}) {
+  return (
+    <div className="rounded-3xl bg-white/70 backdrop-blur border border-black/10 shadow-soft p-5">
+      <div className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-sand border border-black/10">
+        {icon}
+      </div>
+      <div className="mt-3 font-semibold">{title}</div>
+      <div className="mt-2 text-sm text-black/70">{text}</div>
     </div>
   );
 }
