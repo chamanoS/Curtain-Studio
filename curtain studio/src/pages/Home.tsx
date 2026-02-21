@@ -6,6 +6,7 @@ import { brand, sections, milestones } from "../data/content";
 import { Card, CardBody, SectionTitle } from "../components/ui";
 import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
+import Gallery from "../pages/Gallery"
 import QuoteEstimator from "../components/quote/QuoteEstimator";
 
 export default function Home() {
@@ -100,11 +101,12 @@ export default function Home() {
             </Card>
           </div>
 
-          <div className="mt-6 rounded-2xl overflow-hidden border border-black/5 bg-white shadow-soft">
-            <img src={productsImg} alt="Curtain studio products collage" className="w-full object-cover" />
-          </div>
+          
         </div>
       </section>
+
+      {/*Gallery */}
+     <Gallery/>
 
       {/* Milestones */}
       <section className="border-t border-black/5 bg-white/40">
@@ -145,46 +147,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Quick estimate */}
-      <section className="border-t border-black/5">
-        <div className="container py-12">
-          <div className="grid gap-8 lg:grid-cols-3 items-start">
-            <div className="lg:col-span-1">
-              <SectionTitle
-                eyebrow="Fast quote"
-                title="Estimate your budget in 60 seconds"
-                subtitle="Pick a style, windows, and installation — then send the estimate to WhatsApp or request an official quote."
-              />
-              <div className="mt-6 grid gap-3">
-                <Link
-                  to="/quote"
-                  className="rounded-xl bg-ink px-5 py-3 text-paper shadow-soft hover:opacity-95 inline-flex items-center justify-center gap-2"
-                >
-                  Open the full quote tool <ArrowRight className="h-4 w-4" />
-                </Link>
-                <div className="grid sm:grid-cols-2 gap-3">
-                  <Link
-                    to="/gallery"
-                    className="rounded-xl bg-sand px-5 py-3 text-ink shadow-soft hover:opacity-95 inline-flex items-center justify-center"
-                  >
-                    View gallery
-                  </Link>
-                  <Link
-                    to="/downloads"
-                    className="rounded-xl bg-white px-5 py-3 text-ink shadow-soft border border-black/10 hover:bg-black/5 inline-flex items-center justify-center"
-                  >
-                    Downloads
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-2">
-              <QuoteEstimator compact />
-            </div>
-          </div>
-        </div>
-      </section>
+    
     </div>
   );
 }

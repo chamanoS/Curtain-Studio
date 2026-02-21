@@ -67,9 +67,7 @@ export default function Gallery() {
                 beforeAlt="Room before curtains"
                 afterAlt="Room after curtains"
               />
-              <div className="text-xs text-black/60">
-                Replace these with your real client before/after photos anytime — the component is ready.
-              </div>
+              
             </div>
           </CardBody>
         </Card>
