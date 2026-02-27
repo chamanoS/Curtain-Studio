@@ -209,24 +209,6 @@ export default function Home() {
             subtitle="Designed for convenience and a premium finish."
           />
 
-          <div className="mt-8 grid gap-6 md:grid-cols-3">
-            <ProcessCard
-              icon={<Ruler className="h-5 w-5 text-brass" />}
-              title="1) Consult & measure"
-              text="We visit, measure accurately, and help you pick fabric + style."
-            />
-            <ProcessCard
-              icon={<Scissors className="h-5 w-5 text-brass" />}
-              title="2) Custom make"
-              text="Your curtains are made-to-fit with neat stitching and clean lines."
-            />
-            <ProcessCard
-              icon={<Drill className="h-5 w-5 text-brass" />}
-              title="3) Install & style"
-              text="We install rods/rails and finish the look so it’s ready to enjoy."
-            />
-          </div>
-
           <div className="mt-10 grid gap-6 md:grid-cols-2 items-start">
             <div className="rounded-3xl overflow-hidden border border-black/10 shadow-soft bg-white">
               <img
