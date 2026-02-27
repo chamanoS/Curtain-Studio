@@ -5,17 +5,18 @@ import timelineImg from "../assets/timeline.png";
 import processImg from "../assets/process_img.jpg";
 import { brand, sections, milestones } from "../data/content";
 import { Card, CardBody, SectionTitle } from "../components/ui";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Gallery from "../pages/Gallery";
 import QuoteEstimator from "../components/quote/QuoteEstimator";
 import {
+  ArrowRight,
+  CheckCircle2,
+  Sparkles,
   Ruler,
   Drill,
-  Sparkles,
-  ShieldCheck,
   Scissors,
   Clock3,
+  ShieldCheck,
   Home as HomeIcon,
 } from "lucide-react";
 
@@ -31,10 +32,10 @@ export default function Home() {
       <section className="border-b border-black/5">
         <div className="container py-12 md:py-16 grid gap-10 md:grid-cols-2 items-center">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-sand px-3 py-1 text-xs text-black/70">
+            {/* <div className="inline-flex items-center gap-2 rounded-full bg-sand px-3 py-1 text-xs text-black/70">
               <Sparkles className="h-4 w-4 text-brass" />
               Custom curtains • Mobile consultations • Professional installation
-            </div>
+            </div> */}
             <h1 className="mt-4 text-4xl md:text-5xl font-semibold leading-tight">
               {brand.name}
               <span className="block text-black/60 text-2xl md:text-3xl mt-2">
@@ -97,20 +98,44 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why us */}
-      <section>
+      {/* Why us */}    
+      <section className="border-t border-black/5 bg-white/40">
         <div className="container py-12">
           <SectionTitle
-            eyebrow="Executive summary"
+            eyebrow="Why Curtain Studio"
             title="Affordable style — professionally installed"
             subtitle={sections.executiveSummary.mission}
           />
 
+          {/* Top value cards */}
+          <div className="mt-8 grid gap-6 lg:grid-cols-3">
+            <ValueCard
+              icon={<Ruler className="h-5 w-5 text-brass" />}
+              title="Measure & advise"
+              text="We help you choose the right style, fabric and fit — then measure accurately for a clean result."
+            />
+            <ValueCard
+              icon={<Sparkles className="h-5 w-5 text-brass" />}
+              title="Custom-made finish"
+              text="Neat stitching, balanced drape, and attention to detail — built to look premium in your space."
+            />
+            <ValueCard
+              icon={<Drill className="h-5 w-5 text-brass" />}
+              title="Install & style"
+              text="Rods/rails installed properly, curtains hung correctly, and the final look finished professionally."
+            />
+          </div>
+
+          {/* The “promise” card that keeps your real business plan content */}
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             <Card>
               <CardBody>
-                <div className="font-semibold">What we do</div>
-                <ul className="mt-3 space-y-2 text-black/70">
+                <div className="flex items-center gap-2 font-semibold">
+                  <CheckCircle2 className="h-5 w-5 text-brass" />
+                  What we do
+                </div>
+
+                <ul className="mt-4 space-y-2 text-black/70">
                   {sections.executiveSummary.highlights.map((h) => (
                     <li key={h} className="flex gap-2">
                       <CheckCircle2 className="h-5 w-5 text-brass shrink-0" />
@@ -123,8 +148,12 @@ export default function Home() {
 
             <Card>
               <CardBody>
-                <div className="font-semibold">What makes us different</div>
-                <ul className="mt-3 space-y-2 text-black/70">
+                <div className="flex items-center gap-2 font-semibold">
+                  <CheckCircle2 className="h-5 w-5 text-brass" />
+                  What makes us different
+                </div>
+
+                <ul className="mt-4 space-y-2 text-black/70">
                   {sections.whatMakesDifferent.map((h) => (
                     <li key={h} className="flex gap-2">
                       <CheckCircle2 className="h-5 w-5 text-brass shrink-0" />
@@ -134,6 +163,36 @@ export default function Home() {
                 </ul>
               </CardBody>
             </Card>
+          </div>
+
+          {/* Bottom CTA strip */}
+          <div className="mt-10 rounded-3xl border border-black/10 bg-paper/70 backdrop-blur shadow-soft p-6 md:p-8">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+              <div>
+                <div className="text-sm text-black/60">Ready to start?</div>
+                <div className="mt-1 text-xl md:text-2xl font-semibold">
+                  Get a quick estimate, then we’ll confirm with measurements.
+                </div>
+                <div className="mt-2 text-sm text-black/70">
+                  Use the estimator to get a range — we’ll refine it based on your space and fabric choice.
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                <Link
+                  to="/quote"
+                  className="rounded-xl bg-ink px-5 py-3 text-paper shadow-soft hover:opacity-95 inline-flex items-center justify-center gap-2"
+                >
+                  Estimate my project <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  to="/contact"
+                  className="rounded-xl bg-sand px-5 py-3 text-ink shadow-soft hover:opacity-95 inline-flex items-center justify-center border border-black/5"
+                >
+                  Book a consultation
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -271,6 +330,26 @@ function ProcessCard({
         {icon}
       </div>
       <div className="mt-3 font-semibold">{title}</div>
+      <div className="mt-2 text-sm text-black/70">{text}</div>
+    </div>
+  );
+}
+
+function ValueCard({
+  icon,
+  title,
+  text,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  text: string;
+}) {
+  return (
+    <div className="rounded-3xl border border-black/10 bg-white/70 backdrop-blur shadow-soft p-6">
+      <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-sand border border-black/10">
+        {icon}
+      </div>
+      <div className="mt-4 font-semibold text-lg">{title}</div>
       <div className="mt-2 text-sm text-black/70">{text}</div>
     </div>
   );

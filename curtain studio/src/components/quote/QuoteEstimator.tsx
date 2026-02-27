@@ -46,7 +46,7 @@ export default function QuoteEstimator({ compact }: { compact?: boolean }) {
       {!compact && (
         <SectionTitle
           eyebrow="Instant estimate"
-          title="Get a quick price range (no login, no waiting)"
+          title="Get a quick price range "
           subtitle="This is a guide estimate based on your selected curtain style, rods/rails, and installation per window."
         />
       )}
