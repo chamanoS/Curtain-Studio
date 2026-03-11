@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { brand } from "../data/content";
-import { SectionTitle } from "../components/ui";
+import { brand, sections, milestones } from "../data/content";
+import { Card, CardBody, SectionTitle } from "../components/ui";
 import {
   ArrowRight,
+  CheckCircle2,
   Clock3,
   Drill,
   Home as HomeIcon,
@@ -131,34 +132,75 @@ export default function Home() {
         </div>
       </section>
 
-      {/* WHY US */}
-      <section className="border-t border-black/5 bg-white/40">
-        <div className="container py-14">
-          <SectionTitle
-            eyebrow="Why Curtain Studio"
-            title="Beautiful curtains. Clean installation."
-            subtitle="A practical, stylish service designed around convenience, quality, and a polished final look."
-          />
-
-          <div className="mt-8 grid gap-6 lg:grid-cols-3">
-            <ValueCard
-              icon={<Ruler className="h-5 w-5 text-brass" />}
-              title="Measured properly"
-              text="We come to your home, take accurate measurements, and guide you on the best drop, width, and finish."
-            />
-            <ValueCard
-              icon={<Sparkles className="h-5 w-5 text-brass" />}
-              title="Made to fit"
-              text="Your curtains are tailored to suit your windows, your room style, and the look you want."
-            />
-            <ValueCard
-              icon={<Drill className="h-5 w-5 text-brass" />}
-              title="Installed cleanly"
-              text="From rods and rails to the final hang, everything is installed neatly for a complete finish."
-            />
-          </div>
-        </div>
-      </section>
+      {/* Why us */}  
+     <section className="border-t border-black/5 bg-white/40">
+             <div className="container py-12">
+               <SectionTitle
+                 eyebrow="Why Curtain Studio"
+                 title="Affordable style — professionally installed"
+                 subtitle={sections.executiveSummary.mission}
+               />
+     
+               {/* Top value cards */}
+               <div className="mt-8 grid gap-6 lg:grid-cols-3">
+                 <ValueCard
+                   icon={<Ruler className="h-5 w-5 text-brass" />}
+                   title="Measure & advise"
+                   text="We help you choose the right style, fabric and fit — then measure accurately for a clean result."
+                 />
+                 <ValueCard
+                   icon={<Sparkles className="h-5 w-5 text-brass" />}
+                   title="Custom-made finish"
+                   text="Neat stitching, balanced drape, and attention to detail — built to look premium in your space."
+                 />
+                 <ValueCard
+                   icon={<Drill className="h-5 w-5 text-brass" />}
+                   title="Install & style"
+                   text="Rods/rails installed properly, curtains hung correctly, and the final look finished professionally."
+                 />
+               </div>
+     
+               {/* The “promise” card that keeps your real business plan content */}
+               <div className="mt-8 grid gap-6 md:grid-cols-2">
+                 <Card>
+                   <CardBody>
+                     <div className="flex items-center gap-2 font-semibold">
+                       <CheckCircle2 className="h-5 w-5 text-brass" />
+                       What we do
+                     </div>
+     
+                     <ul className="mt-4 space-y-2 text-black/70">
+                       {sections.executiveSummary.highlights.map((h) => (
+                         <li key={h} className="flex gap-2">
+                           <CheckCircle2 className="h-5 w-5 text-brass shrink-0" />
+                           <span>{h}</span>
+                         </li>
+                       ))}
+                     </ul>
+                   </CardBody>
+                 </Card>
+     
+                 <Card>
+                   <CardBody>
+                     <div className="flex items-center gap-2 font-semibold">
+                       <CheckCircle2 className="h-5 w-5 text-brass" />
+                       What makes us different
+                     </div>
+     
+                     <ul className="mt-4 space-y-2 text-black/70">
+                       {sections.whatMakesDifferent.map((h) => (
+                         <li key={h} className="flex gap-2">
+                           <CheckCircle2 className="h-5 w-5 text-brass shrink-0" />
+                           <span>{h}</span>
+                         </li>
+                       ))}
+                     </ul>
+                   </CardBody>
+                 </Card>
+               </div>
+     
+             </div>
+     </section>
 
       {/* SERVICES / FEATURED LOOKS */}
       <section className="border-t border-black/5">
