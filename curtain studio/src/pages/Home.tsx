@@ -202,65 +202,46 @@ export default function Home() {
              </div>
      </section>
 
-      {/* SERVICES / FEATURED LOOKS */}
-      <section className="border-t border-black/5">
-        <div className="container py-14">
-          <SectionTitle
-            eyebrow="Featured looks"
-            title="Designed for real homes"
-            subtitle="From soft sheers to full blackout combinations, we create curtain solutions that feel warm, elegant, and practical."
-          />
+      {/* WHAT WE OFFER */}
+      <section className="border-t border-black/5 bg-[#f8f6f2]">
+        <div className="container py-16">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-xs uppercase tracking-[0.25em] text-black/45">
+              Our Services
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold text-[#1f1f1f] md:text-5xl">
+              What We Offer
+            </h2>
+            <div className="mx-auto mt-4 h-[2px] w-14 bg-[#c49a6c]" />
+            <p className="mt-4 text-sm leading-7 text-black/60 md:text-base">
+              Custom curtain solutions designed to bring elegance, comfort, and a clean finish to your home.
+            </p>
+          </div>
 
-          <div className="mt-8 grid gap-6 lg:grid-cols-2">
-            <div className="overflow-hidden rounded-3xl border border-black/10 bg-white shadow-soft">
-              <img
-                src={galleryImg1}
-                alt="Elegant bedroom curtains"
-                className="h-[340px] w-full object-cover"
-              />
-              <div className="p-6">
-                <div className="text-lg font-semibold">Double layer elegance</div>
-                <div className="mt-2 text-sm text-black/70">
-                  A soft sheer layer for daytime light and a heavier curtain layer for
-                  privacy, warmth, and a refined finish.
-                </div>
-              </div>
-            </div>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+            <OfferCard
+              icon={<Scissors className="h-5 w-5 text-[#b8875c]" />}
+              title="Custom Curtains"
+              text="Tailored to your exact specifications with premium fabrics and elegant finishes."
+            />
 
-            <div className="grid gap-6">
-              <div className="rounded-3xl border border-black/10 bg-white/70 p-6 shadow-soft">
-                <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-sand border border-black/10">
-                  <Scissors className="h-5 w-5 text-brass" />
-                </div>
-                <div className="mt-4 text-lg font-semibold">Custom curtains</div>
-                <div className="mt-2 text-sm text-black/70">
-                  Tailored to your exact measurements with quality fabric, soft drape,
-                  and a finish that suits your room.
-                </div>
-              </div>
+            <OfferCard
+              icon={<PanelTop className="h-5 w-5 text-[#b8875c]" />}
+              title="Rods & Rails"
+              text="Quality curtain rods and rails supplied and fitted to complement your décor."
+            />
 
-              <div className="rounded-3xl border border-black/10 bg-white/70 p-6 shadow-soft">
-                <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-sand border border-black/10">
-                  <PanelTop className="h-5 w-5 text-brass" />
-                </div>
-                <div className="mt-4 text-lg font-semibold">Rods & rails</div>
-                <div className="mt-2 text-sm text-black/70">
-                  Decorative rods, practical rails, and hardware options that match
-                  both the curtain style and your interior.
-                </div>
-              </div>
+            <OfferCard
+              icon={<Drill className="h-5 w-5 text-[#b8875c]" />}
+              title="Installation"
+              text="Professional installation ensuring perfect fit and a flawless finish every time."
+            />
 
-              <div className="rounded-3xl border border-black/10 bg-white/70 p-6 shadow-soft">
-                <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-sand border border-black/10">
-                  <Layers3 className="h-5 w-5 text-brass" />
-                </div>
-                <div className="mt-4 text-lg font-semibold">Layered styling</div>
-                <div className="mt-2 text-sm text-black/70">
-                  Combine sheers with dimout or blackout curtains for a fuller, richer,
-                  more flexible window treatment.
-                </div>
-              </div>
-            </div>
+            <OfferCard
+              icon={<HomeIcon className="h-5 w-5 text-[#b8875c]" />}
+              title="Mobile Consultation"
+              text="We come to you with expert advice and measurements in the comfort of your home."
+            />
           </div>
         </div>
       </section>
@@ -531,6 +512,30 @@ function FeatureRow({
     <div className="rounded-2xl border border-black/10 bg-white/70 p-5 shadow-soft">
       <div className="font-semibold text-ink">{title}</div>
       <div className="mt-2 text-sm text-black/70">{text}</div>
+    </div>
+  );
+}
+
+function OfferCard({
+  icon,
+  title,
+  text,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  text: string;
+}) {
+  return (
+    <div className="rounded-[28px] border border-black/5 bg-white px-6 py-8 text-center shadow-[0_10px_30px_rgba(0,0,0,0.04)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_14px_36px_rgba(0,0,0,0.07)]">
+      <div className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-[#f5efe7] border border-[#eadfce]">
+        {icon}
+      </div>
+
+      <h3 className="mt-5 text-lg font-medium text-[#1f1f1f]">{title}</h3>
+
+      <p className="mt-3 text-sm leading-6 text-black/65">
+        {text}
+      </p>
     </div>
   );
 }
