@@ -16,10 +16,10 @@ import {
   PanelTop,
 } from "lucide-react";
 
-import heroImg from "../assets/hero_living_room.png";
-import galleryImg1 from "../assets/WhatsApp Image 2026-02-21 at 23.04.00.jpeg";
-import galleryImg2 from "../assets/WhatsApp Image 2026-02-21 at 23.04.12.jpeg";
-import galleryImg3 from "../assets/WhatsApp Image 2026-02-21 at 23.05.06.jpeg";
+import heroImg from "../assets/home.jpg";
+import galleryImg1 from "../assets/curt1.jpg";
+import galleryImg2 from "../assets/curt2.jpg";
+import galleryImg3 from "../assets/curt3.jpg";
 import rodImg from "../assets/curt-4.jpeg";
 import curt1 from "../assets/curt-1.jpeg";
 import curt2 from "../assets/curt-2.jpeg";
@@ -51,6 +51,27 @@ const curtainStyles = [
   {
     title: "Ripple Fold",
     text: "Smooth wave finish for a sleek and contemporary interior feel.",
+  },
+];
+
+const testimonials = [
+  {
+    quote:
+      "Absolutely stunning work! The team was professional from start to finish. Our living room looks completely transformed.",
+    name: "Sarah M.",
+    location: "Sandton",
+  },
+  {
+    quote:
+      "We had our entire home fitted with custom curtains. The attention to detail and fabric quality exceeded our expectations.",
+    name: "James & Linda T.",
+    location: "Centurion",
+  },
+  {
+    quote:
+      "The mobile consultation was so convenient. They helped us choose the perfect style and the installation was flawless.",
+    name: "Nomsa K.",
+    location: "Midrand",
   },
 ];
 
@@ -204,19 +225,12 @@ export default function Home() {
 
       {/* WHAT WE OFFER */}
       <section className="border-t border-black/5 bg-[#f8f6f2]">
-        <div className="container py-16">
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="text-xs uppercase tracking-[0.25em] text-black/45">
-              Our Services
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold text-[#1f1f1f] md:text-5xl">
-              What We Offer
-            </h2>
-            <div className="mx-auto mt-4 h-[2px] w-14 bg-[#c49a6c]" />
-            <p className="mt-4 text-sm leading-7 text-black/60 md:text-base">
-              Custom curtain solutions designed to bring elegance, comfort, and a clean finish to your home.
-            </p>
-          </div>
+        <div className="container py-14">
+          <SectionTitle
+            eyebrow="Our Services"
+            title=" What We Offer"
+            subtitle="Custom curtain solutions designed to bring elegance, comfort, and a clean finish to your home."
+          />
 
           <div className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
             <OfferCard
@@ -242,79 +256,6 @@ export default function Home() {
               title="Mobile Consultation"
               text="We come to you with expert advice and measurements in the comfort of your home."
             />
-          </div>
-        </div>
-      </section>
-
-      {/* CURTAIN STYLES */}
-      <section className="border-t border-black/5 bg-white/40">
-        <div className="container py-14">
-          <SectionTitle
-            eyebrow="Curtain styles"
-            title="Choose the finish that suits your space"
-            subtitle="Different headings create different moods — modern, classic, soft, or structured."
-          />
-
-          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            {curtainStyles.map((style) => (
-              <div
-                key={style.title}
-                className="rounded-3xl border border-black/10 bg-white/80 p-6 shadow-soft"
-              >
-                <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-black/10 bg-sand">
-                  <Sparkles className="h-5 w-5 text-brass" />
-                </div>
-                <div className="mt-4 text-lg font-semibold">{style.title}</div>
-                <div className="mt-2 text-sm text-black/70">{style.text}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* RODS & RAILS FEATURE */}
-      <section className="border-t border-black/5">
-        <div className="container py-14">
-          <div className="grid items-center gap-8 lg:grid-cols-2">
-            <div className="overflow-hidden rounded-3xl border border-black/10 shadow-soft">
-              <img
-                src={rodImg}
-                alt="Curtain rods and rails display"
-                className="h-[460px] w-full object-cover"
-              />
-            </div>
-
-            <div>
-              <SectionTitle
-                eyebrow="Rods & rails"
-                title="Hardware that completes the look"
-                subtitle="The right rod or rail can completely change the final feel of a room."
-              />
-
-              <div className="mt-6 grid gap-4">
-                <FeatureRow
-                  title="Decorative rods"
-                  text="Ideal for visible curtain styling with elegant finials and a stronger design statement."
-                />
-                <FeatureRow
-                  title="Practical rails"
-                  text="Great for smooth movement, layered curtains, and a cleaner fitted look."
-                />
-                <FeatureRow
-                  title="Matched finishes"
-                  text="Choose tones and hardware styles that suit your curtains, wall colour, and room aesthetic."
-                />
-              </div>
-
-              <div className="mt-8">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-ink px-5 py-3 text-paper shadow-soft hover:opacity-95"
-                >
-                  Book a consultation <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -360,6 +301,30 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+    {/*Testimonials*/}
+      <section className="border-t border-black/5">
+         <div className="container py-14">
+          <SectionTitle
+            eyebrow="What others say"
+            title="Three simple steps"
+            subtitle="."
+          />
+              <div className="mt-10 mx-auto max-w-4xl grid gap-4 md:grid-cols-2 lg:grid-cols-3 px-6">
+                {testimonials.map((item) => (
+                  <TestimonialCard
+                    key={item.name}
+                    quote={item.quote}
+                    name={item.name}
+                    location={item.location}
+                  />
+                ))}
+            </div>
+
+          </div>
+      </section>
+
+      
 
       {/* GALLERY PREVIEW */}
       <section className="border-t border-black/5 bg-white/40">
@@ -439,6 +404,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
     </div>
   );
 }
@@ -536,6 +502,45 @@ function OfferCard({
       <p className="mt-3 text-sm leading-6 text-black/65">
         {text}
       </p>
+    </div>
+  );
+}
+
+function TestimonialCard({
+  quote,
+  name,
+  location,
+}: {
+  quote: string;
+  name: string;
+  location: string;
+}) {
+  return (
+    <div className="relative rounded-2xl border border-[#ece7df] bg-white px-5 py-5 shadow-[0_6px_16px_rgba(0,0,0,0.03)] transition hover:-translate-y-[2px] hover:shadow-[0_10px_20px_rgba(0,0,0,0.05)]">
+      
+      {/* quote icon */}
+      <div className="absolute -top-3 left-5 flex h-7 w-7 items-center justify-center rounded-full bg-[#b8875c] text-white text-sm shadow-sm">
+        ❞
+      </div>
+
+      <div className="pt-2">
+
+        {/* stars */}
+        <div className="flex items-center gap-[2px] text-[#b8875c] text-xs">
+          ★★★★★
+        </div>
+
+        {/* quote */}
+        <p className="mt-2 text-sm leading-6 text-black/70 italic">
+          “{quote}”
+        </p>
+
+        {/* client */}
+        <div className="mt-4">
+          <p className="text-sm font-semibold text-[#1f1f1f]">{name}</p>
+          <p className="text-xs text-black/50">{location}</p>
+        </div>
+      </div>
     </div>
   );
 }
