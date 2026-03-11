@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { brand, sections, milestones } from "../data/content";
 import { Card, CardBody, SectionTitle } from "../components/ui";
@@ -27,12 +28,36 @@ import curt3 from "../assets/curt-3.jpeg";
 import curt4 from "../assets/curt.jpeg";
 
 const homeGallery = [
-  { src: galleryImg1, alt: "Double layer bedroom curtains", tag: "Double Layer" },
-  { src: galleryImg2, alt: "Soft sheer and curtain combination", tag: "Sheers" },
-  { src: galleryImg3, alt: "Full bedroom curtain styling", tag: "Blackout" },
-  { src: curt1, alt: "Elegant finished curtain setup", tag: "Bedroom" },
-  { src: curt2, alt: "Close-up sheer curtain detail", tag: "Sheers" },
-  { src: curt3, alt: "Wide window curtain installation", tag: "Installation" },
+  {
+    src: galleryImg1,
+    alt: "Elegant double layer living room",
+    tag: "Double Layer",
+  },
+  {
+    src: galleryImg2,
+    alt: "Soft neutral bedroom curtains",
+    tag: "Sheers",
+  },
+  {
+    src: galleryImg3,
+    alt: "Bedroom curtain styling",
+    tag: "Blackout",
+  },
+  {
+    src: curt1,
+    alt: "Light-filtering sheer installation",
+    tag: "Sheers",
+  },
+  {
+    src: curt2,
+    alt: "Pleated curtain detail",
+    tag: "Rails & Rods",
+  },
+  {
+    src: curt3,
+    alt: "Warm-toned curtain styling",
+    tag: "Double Layer",
+  },
 ];
 
 const curtainStyles = [
@@ -76,6 +101,15 @@ const testimonials = [
 ];
 
 export default function Home() {
+
+const galleryTabs = ["All", "Sheers", "Blackout", "Double Layer", "Rails & Rods"];
+const [activeGalleryTab, setActiveGalleryTab] = useState("All");
+
+const filteredGallery = useMemo(() => {
+  if (activeGalleryTab === "All") return homeGallery;
+  return homeGallery.filter((item) => item.tag === activeGalleryTab);
+}, [activeGalleryTab]);
+
   return (
     <div>
       {/* HERO */}
@@ -326,84 +360,111 @@ export default function Home() {
 
       
 
-      {/* GALLERY PREVIEW */}
-      <section className="border-t border-black/5 bg-white/40">
-        <div className="container py-14">
-          <div className="flex items-end justify-between gap-4">
-            <SectionTitle
-              eyebrow="Gallery"
-              title="Recent curtain installations"
-              subtitle="A few finished looks using your actual curtain images."
+    {/* GALLERY PREVIEW */}
+<section className="border-t border-black/5 bg-[#f8f6f2]">
+  <div className="container py-16">
+    <div className="mx-auto max-w-3xl text-center">
+      <p className="text-xs uppercase tracking-[0.25em] text-black/45">
+        Gallery
+      </p>
+      <h2 className="mt-3 text-3xl font-semibold text-[#1f1f1f] md:text-5xl">
+        Recent Curtain Installations
+      </h2>
+      <div className="mx-auto mt-4 h-[2px] w-14 bg-[#c49a6c]" />
+      <p className="mt-4 text-sm leading-7 text-black/60 md:text-base">
+        Browse a few finished looks, from soft sheers to elegant layered installations.
+      </p>
+    </div>
+
+    {/* Filter tabs */}
+    <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+      {galleryTabs.map((tab) => {
+        const isActive = activeGalleryTab === tab;
+
+        return (
+          <button
+            key={tab}
+            onClick={() => setActiveGalleryTab(tab)}
+            className={`rounded-full px-4 py-2 text-sm transition ${
+              isActive
+                ? "bg-[#b8875c] text-white shadow-sm"
+                : "bg-[#ece8e1] text-black/65 hover:bg-[#e4ddd3]"
+            }`}
+          >
+            {tab}
+          </button>
+        );
+      })}
+    </div>
+
+    {/* Gallery grid */}
+    <div className="mt-10 mx-auto max-w-5xl grid gap-5 sm:grid-cols-2 lg:grid-cols-3 px-2 sm:px-4">
+      {filteredGallery.map((img) => (
+        <div
+          key={img.alt}
+          className="group overflow-hidden rounded-[24px] bg-white p-2 shadow-[0_10px_30px_rgba(0,0,0,0.04)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.08)]"
+        >
+          <div className="relative overflow-hidden rounded-[20px]">
+            <img
+              src={img.src}
+              alt={img.alt}
+              className="h-[280px] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
             />
-            <Link
-              to="/gallery"
-              className="hidden sm:inline-flex items-center gap-2 text-brass hover:underline"
-            >
-              View full gallery <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/5 to-transparent" />
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {homeGallery.map((img) => (
-              <div
-                key={img.alt}
-                className="group relative overflow-hidden rounded-3xl border border-black/10 bg-white shadow-soft"
-              >
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className="h-72 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                  <div className="inline-flex rounded-full bg-white/15 px-3 py-1 text-xs backdrop-blur">
-                    {img.tag}
-                  </div>
-                  <div className="mt-2 text-sm font-medium">{img.alt}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-6 sm:hidden">
-            <Link
-              to="/gallery"
-              className="inline-flex items-center gap-2 text-brass hover:underline"
-            >
-              View full gallery <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-
-          <div className="mt-10 rounded-3xl border border-black/10 bg-paper/70 p-6 shadow-soft md:p-8">
-            <div className="flex flex-col items-start justify-between gap-5 md:flex-row md:items-center">
-              <div>
-                <div className="text-sm text-black/60">Ready when you are</div>
-                <div className="mt-1 text-xl font-semibold md:text-2xl">
-                  Get an estimate, then we’ll confirm everything with measurements.
-                </div>
-                <div className="mt-2 text-sm text-black/70">
-                  Simple steps. Clear communication. Beautiful results.
-                </div>
-              </div>
-
-              <div className="flex w-full flex-col gap-3 sm:flex-row md:w-auto">
-                <Link
-                  to="/quote"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-ink px-5 py-3 text-paper shadow-soft hover:opacity-95"
-                >
-                  Get an estimate <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center justify-center rounded-xl border border-black/5 bg-sand px-5 py-3 text-ink shadow-soft hover:opacity-95"
-                >
-                  Book a measurement
-                </Link>
-              </div>
+            <div className="absolute bottom-0 left-0 right-0 p-4">
+              <span className="inline-flex rounded-full bg-white/20 px-3 py-1 text-xs text-white backdrop-blur">
+                {img.tag}
+              </span>
+              <p className="mt-2 text-sm font-medium text-white">
+                {img.alt}
+              </p>
             </div>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+
+    <div className="mt-8 text-center">
+      <Link
+        to="/gallery"
+        className="inline-flex items-center gap-2 text-[#b8875c] hover:underline"
+      >
+        View full gallery <ArrowRight className="h-4 w-4" />
+      </Link>
+    </div>
+
+    {/* CTA */}
+    <div className="mt-12 mx-auto max-w-5xl rounded-[28px] border border-black/5 bg-white px-6 py-8 shadow-[0_10px_30px_rgba(0,0,0,0.04)] md:px-8">
+      <div className="flex flex-col items-start justify-between gap-5 md:flex-row md:items-center">
+        <div>
+          <div className="text-sm text-black/50">Ready when you are</div>
+          <div className="mt-1 text-xl font-semibold text-[#1f1f1f] md:text-2xl">
+            Get an estimate, then we’ll confirm everything with measurements.
+          </div>
+          <div className="mt-2 text-sm text-black/65">
+            Simple steps. Clear communication. Beautiful results.
+          </div>
+        </div>
+
+        <div className="flex w-full flex-col gap-3 sm:flex-row md:w-auto">
+          <Link
+            to="/quote"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-ink px-5 py-3 text-paper shadow-soft hover:opacity-95"
+          >
+            Get an estimate <ArrowRight className="h-4 w-4" />
+          </Link>
+          <Link
+            to="/contact"
+            className="inline-flex items-center justify-center rounded-xl border border-black/5 bg-[#f3e7d8] px-5 py-3 text-ink shadow-soft hover:opacity-95"
+          >
+            Book a measurement
+          </Link>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
     </div>
   );
